@@ -54,6 +54,10 @@ public class MyActivity extends Activity {
         return new HashMap<String, Activity>() {{
             put("Simple Elements", new SimpleElementsActivity());
             put("Nested Views", new NestedViewsActivity());
+            put("DateTime Elements", new DateTimeElementsActivity());
+            put("Scroll List", new ScrollListActivity());
+            put("Swipe Page", new SwipePageActivity());
+            put("Drag drop page", new DragDropActivity());
         }};
     }
 }

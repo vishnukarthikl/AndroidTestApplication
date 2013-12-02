@@ -1,9 +1,13 @@
 package com.example.AndroidTestApplication;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
@@ -24,19 +28,35 @@ public class SimpleElementsActivity extends Activity {
         button = (Button) findViewById(R.id.button);
         radioButton = (RadioButton) findViewById(R.id.radioButton);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.show();
         setListeners();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.simple_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        resultText.setText(item.getTitle() + " menu item was selected");
+        return true;
+    }
+
     private void setListeners() {
-        View.OnClickListener buttonClickListner = new View.OnClickListener() {
+        View.OnClickListener buttonClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 resultText.setText(view.getContentDescription() + " was clicked");
             }
         };
-        button.setOnClickListener(buttonClickListner);
-        radioButton.setOnClickListener(buttonClickListner);
-        imageButton.setOnClickListener(buttonClickListner);
+        button.setOnClickListener(buttonClickListener);
+        radioButton.setOnClickListener(buttonClickListener);
+        imageButton.setOnClickListener(buttonClickListener);
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
