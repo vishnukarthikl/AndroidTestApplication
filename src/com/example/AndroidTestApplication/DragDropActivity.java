@@ -8,29 +8,32 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-public class DragDropActivity extends Activity implements View.OnLongClickListener, View.OnDragListener {
+public class DragDropActivity extends Activity implements View.OnDragListener, View.OnTouchListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drag_drop);
-        findViewById(R.id.textView).setOnLongClickListener(this);
-        findViewById(R.id.textView1).setOnLongClickListener(this);
-        findViewById(R.id.textView2).setOnLongClickListener(this);
-        findViewById(R.id.textView3).setOnLongClickListener(this);
+        findViewById(R.id.textView).setOnTouchListener(this);
+        findViewById(R.id.textView1).setOnTouchListener(this);
+        findViewById(R.id.textView2).setOnTouchListener(this);
+        findViewById(R.id.textView3).setOnTouchListener(this);
 
         TextView target = (TextView) findViewById(R.id.target);
         target.setOnDragListener(this);
     }
 
-    @Override
-    public boolean onLongClick(View v) {
-        ClipData data = ClipData.newPlainText("", "");
-        DragShadow dragShadow = new DragShadow(v);
-        v.startDrag(data, dragShadow, v, 0);
-        return false;
+    public boolean onTouch(View v, MotionEvent event) {
+        int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN) {
+            ClipData data = ClipData.newPlainText("", "");
+            DragShadow dragShadow = new DragShadow(v);
+            v.startDrag(data, dragShadow, v, 0);
+        }
+        return true;
     }
 
     @Override
@@ -39,10 +42,11 @@ public class DragDropActivity extends Activity implements View.OnLongClickListen
         int action = event.getAction();
         switch (action) {
             case DragEvent.ACTION_DROP:
-                 TextView targetView = (TextView) v;
-                 TextView textView = (TextView) event.getLocalState();
-                 targetView.setText(textView.getText());
-                 break;
+                TextView targetView = (TextView) v;
+                TextView textView = (TextView) event.getLocalState();
+                targetView.setText(textView.getText());
+                break;
+
 
         }
 
@@ -63,13 +67,13 @@ public class DragDropActivity extends Activity implements View.OnLongClickListen
             super.onProvideShadowMetrics(shadowSize, shadowTouchPoint);
 
             View view = getView();
-            int height = view.getHeight()/2;
+            int height = view.getHeight() / 2;
             int width = view.getWidth() / 2;
 
             box.setBounds(0, 0, width, height);
             shadowSize.set(width, height);
 
-            shadowTouchPoint.set(width/2, height/2);
+            shadowTouchPoint.set(width / 2, height / 2);
 
         }
 

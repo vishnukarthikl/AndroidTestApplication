@@ -28,6 +28,19 @@ public class SimpleElementsActivity extends Activity {
         button = (Button) findViewById(R.id.button);
         radioButton = (RadioButton) findViewById(R.id.radioButton);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
+        TextView longPressTextView = (TextView) findViewById(R.id.longPressText);
+        ImageView imageView = (ImageView) findViewById(R.id.longPressImage);
+
+        View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                resultText.setText(v.getContentDescription() + " was long pressed");
+                return true;
+            }
+        };
+
+        longPressTextView.setOnLongClickListener(longClickListener);
+        imageView.setOnLongClickListener(longClickListener);
 
         ActionBar actionBar = getActionBar();
         actionBar.show();

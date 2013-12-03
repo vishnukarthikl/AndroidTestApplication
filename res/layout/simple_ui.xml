@@ -42,5 +42,16 @@
         android:layout_gravity="center"
         android:src="@drawable/ic_launcher"
         android:contentDescription="image button"/>
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Long press text"
+            android:id="@+id/longPressText" android:gravity="center_horizontal"
+            android:contentDescription="long press text"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/longPressImage" android:layout_gravity="center" android:contentDescription="long press image"
+            android:focusable="false" android:src="@android:drawable/ic_dialog_info"/>
 
 </LinearLayout>
