@@ -59,6 +59,7 @@ public class MyActivity extends Activity {
             put("Swipe Page", new SwipePageActivity());
             put("Drag drop page", new DragDropActivity());
             put("Current Location", new CurrentLocationActivity());
+            put("Web view", new WebViewActivity());
         }};
     }
 }
