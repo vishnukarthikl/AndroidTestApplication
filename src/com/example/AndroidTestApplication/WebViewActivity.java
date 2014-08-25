@@ -20,17 +20,28 @@ public class WebViewActivity extends Activity {
             }
         });
         webView.getSettings().setJavaScriptEnabled(true);
-        String html = "<html>" +
-                "<head>" +
-                "    <title>Webview Android</title>" +
-                "    <input type=\"text\" class=\"input_text\" id=\"first_input\" /> <br />" +
-                "    <input type=\"date\" class=\"input_date\" id=\"second_input\" />  <br />" +
-                "    <input type=\"email\" class=\"input_email\" id=\"third_input\" />  <br />" +
-                "    <button id=\"first_button\" class=\"press_me_button\">Press Me</button>  <br>" +
-                "</head>" +
-                "<body>" +
-                "" +
-                "</body>" +
+        String html = "<html>\n" +
+                "<head>\n" +
+                "    <script>\n" +
+                "        function press() {\n" +
+                "            document.getElementById(\"result\").innerText = \"button was pressed\"\n" +
+                "        }\n" +
+                "    </script>\n" +
+                "    <title>Webview Android</title>\n" +
+                "    <input type=\"text\" class=\"input_text\" id=\"first_input\"/> <br/>\n" +
+                "    <input type=\"date\" class=\"input_date\" id=\"second_input\"/> <br/>\n" +
+                "    <input type=\"email\" class=\"input_email\" id=\"third_input\"/> <br/>\n" +
+                "    <button id=\"first_button\" class=\"press_me_button\" onclick=press()>Press Me\n" +
+                "    </button>\n" +
+                "    <br>\n" +
+                "\n" +
+                "    <div id=\"result\">\n" +
+                "\n" +
+                "    </div>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "\n" +
+                "</body>\n" +
                 "</html>";
         webView.loadDataWithBaseURL("", html, "text/html", "UTF-8", "");
     }
